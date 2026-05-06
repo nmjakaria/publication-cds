@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and role information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "staff"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Inventory product details",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "cost": { "type": "number" },
+        "stockLevel": { "type": "integer" },
+        "minStockAlert": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sku", "name", "price", "stockLevel"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Sales transaction record",
+      "type": "object",
+      "properties": {
+        "invoiceId": { "type": "string" },
+        "totalAmount": { "type": "number" },
+        "customerName": { "type": "string" },
+        "items": { 
+          "type": "array",
+          "description": "List of items in the sale"
+        },
+        "handledBy": { "type": "string", "description": "User UID" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["invoiceId", "totalAmount", "items", "handledBy"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Business expense record",
+      "type": "object",
+      "properties": {
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "recordedBy": { "type": "string", "description": "User UID" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["amount", "category", "date", "recordedBy"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product category",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Users collection"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Products collection"
+    },
+    "/sales/{saleId}": {
+      "schema": "Sale",
+      "description": "Sales collection"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Expenses collection"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Categories collection"
+    }
+  }
+}
