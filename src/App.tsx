@@ -38,7 +38,7 @@ const MainContent: React.FC = () => {
      </div>
   );
 
-  if (!user) return <Login />;
+  // if (!user) return <Login />;
 
   const renderContent = () => {
     switch (activeTab) {

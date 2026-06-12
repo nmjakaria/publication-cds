@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setUser(userDoc.data() as User);
         } else {
           // CONFIGURE INITIAL ADMIN EMAIL HERE
-          const INITIAL_ADMIN_EMAIL = 'nmjakaria01@gmail.com'; 
+          const INITIAL_ADMIN_EMAIL = 'cdsitdepartment@gmail.com'; 
           const role: UserRole = fUser.email === INITIAL_ADMIN_EMAIL ? 'admin' : 'staff';
           const newUser: User = {
             uid: fUser.uid,
